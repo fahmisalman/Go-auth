@@ -1,16 +1,17 @@
 package main
 
 import (
-	controllers "go_auth/controller"
+	auth "go_auth/auth"
+	config "go_auth/config"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	r := gin.Default()
+	db := config.InitDB()
+	router := gin.Default()
 
-	auth := r.Group("/auth")
-	auth.POST("/register", controllers.Register)
+	auth.RegisterRoutes(router, db)
 
-	r.Run()
+	router.Run()
 }
