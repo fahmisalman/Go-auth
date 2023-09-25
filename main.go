@@ -2,7 +2,7 @@ package main
 
 import (
 	config "go_auth/config"
-	auth "go_auth/module/auth"
+	auth "go_auth/pkg/auth"
 
 	"github.com/gin-gonic/gin"
 )
