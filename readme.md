@@ -1,4 +1,4 @@
-# Golang Authentication
+# Golang Authentication Template
 
 This repository provides a simple example of how to implement authentication in a Golang application. It uses a PostgreSQL database to store user information, and JWT authentication to authenticate users.
 
