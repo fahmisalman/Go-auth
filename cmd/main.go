@@ -1,17 +1,17 @@
 package main
 
 import (
-	config "go_auth/config"
 	auth "go_auth/pkg/auth"
+	db "go_auth/pkg/common/db"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	db := config.InitDB()
+	database := db.InitDB()
 	router := gin.Default()
 
-	auth.RegisterRoutes(router, db)
+	auth.RegisterRoutes(router, database)
 
 	router.Run()
 }

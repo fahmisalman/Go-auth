@@ -1,7 +1,7 @@
-package config
+package db
 
 import (
-	"go_auth/models"
+	"go_auth/pkg/common/models"
 	"log"
 	"os"
 
