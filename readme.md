@@ -5,14 +5,16 @@ This repository provides a simple example of how to implement authentication in 
 ## Getting started
 
 To get started, clone this repository and install the dependencies:
-
+``` bash
 git clone https://github.com/fahmisalman/Go-auth
 cd go-auth
 go mod init
 go mod tidy
+```
 Once the dependencies are installed, you can start the application:
-
+``` bash
 go run main.go
+```
 The application will listen on port 8080 by default. You can access the application in your web browser at http://localhost:8080/
 
 ## Authentication
