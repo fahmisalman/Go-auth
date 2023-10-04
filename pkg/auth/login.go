@@ -2,6 +2,7 @@ package auth
 
 import (
 	"go_auth/pkg/common/models"
+	"go_auth/pkg/utils/token"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -37,5 +38,12 @@ func (h handler) Login(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"message": "login!"})
+	token, err := token.GenerateToken(user.ID)
+
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to create token"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "login!", "access_token": token})
 }
