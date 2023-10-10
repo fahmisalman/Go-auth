@@ -1,6 +1,7 @@
 package main
 
 import (
+	app "go_auth/pkg/app"
 	auth "go_auth/pkg/auth"
 	db "go_auth/pkg/common/db"
 
@@ -12,6 +13,7 @@ func main() {
 	router := gin.Default()
 
 	auth.RegisterRoutes(router, database)
+	app.RegisterRoutes(router, database)
 
 	router.Run()
 }
