@@ -10,5 +10,4 @@ import (
 func RegisterRoutes(r *gin.Engine, db *gorm.DB) {
 	routes := r.Group("/app")
 	user.RegisterRoutes(routes, db)
-
 }
