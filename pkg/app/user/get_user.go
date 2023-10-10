@@ -7,15 +7,33 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func (h handler) GetUser(c *gin.Context) {
+func (h UserHandler) GetUser(c *gin.Context) {
 	id := c.Param("id")
 
-	var user models.User
-
-	if result := h.DB.First(&user, id); result.Error != nil {
-		c.AbortWithError(http.StatusNotFound, result.Error)
+	user, err := h.GetUserByID(id)
+	if err != nil {
+		h.HandleUserError(c, err)
 		return
 	}
 
-	c.JSON(http.StatusOK, &user)
+	h.RespondWithUserJSON(c, user)
+}
+
+func (h UserHandler) GetUserByID(id string) (*models.User, error) {
+	var user models.User
+
+	result := h.DB.First(&user, id)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+
+	return &user, nil
+}
+
+func (h UserHandler) HandleUserError(c *gin.Context, err error) {
+	c.AbortWithError(http.StatusNotFound, err)
+}
+
+func (h UserHandler) RespondWithUserJSON(c *gin.Context, user *models.User) {
+	c.JSON(http.StatusOK, user)
 }

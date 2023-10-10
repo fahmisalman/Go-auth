@@ -14,7 +14,7 @@ type userResponse struct {
 	Name     string `json:"name"`
 }
 
-func (h handler) GetAllUsers(c *gin.Context) {
+func (h UserHandler) GetAllUsers(c *gin.Context) {
 	var users []models.User
 
 	if result := h.DB.Find(&users); result.Error != nil {
