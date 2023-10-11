@@ -1,0 +1,50 @@
+definitions:
+  auth.CurrentUserData:
+    properties:
+      email:
+        type: string
+      id:
+        description: |-
+          Add fields describing user data here.
+          Example:
+          UserID   uint   `json:"user_id"`
+          Username string `json:"username"`
+        type: string
+      name:
+        type: string
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+  auth.CurrentUserResponse:
+    properties:
+      data:
+        $ref: '#/definitions/auth.CurrentUserData'
+      message:
+        type: string
+    type: object
+  auth.ErrorResponse:
+    properties:
+      error:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /auth/profile:
+    get:
+      description: Get information about the currently authenticated user.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/auth.CurrentUserResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/auth.ErrorResponse'
+      summary: Get the current user
+swagger: "2.0"
